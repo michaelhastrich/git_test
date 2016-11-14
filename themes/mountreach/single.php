@@ -95,25 +95,26 @@
 					<?php $the_testimonial = new WP_Query( array( 'post_type' => 'testimonial', 'posts_per_page' => 1, 'orderby' => 'rand') ); ?>
 					<?php if ( $the_testimonial->have_posts() ): ?>
 					<?php while ( $the_testimonial->have_posts() ) : $the_testimonial->the_post(); ?>
-						<?php the_content(); ?>
-						<span class="client"> <?php the_title(); ?> </span>
+						<p class="testimonial-txt"><?php the_field('short_test'); ?></p>	
+						<span class="client"> <?php the_title(); ?></span>
+						<a href="<?php echo get_permalink();?>">Lees de hele testimonial</a>
 					<?php endwhile; ?>
 					<?php wp_reset_postdata(); ?>
 					<?php else:  ?>
 					<p><?php _e( 'Er zijn momenteel testimonials.' ); ?></p>
 					<?php endif; ?>
-					</div><!-- /testimonial -->
+				</div><!-- /testimonial -->
 					<div class="personal">
 						<?php
 						$personal = new WP_Query('page_id=73');?>	 
 						<?php if ( $personal->have_posts() ) : ?>
 						<?php while ( $personal->have_posts() ) : $personal->the_post(); ?>
 							<?php global $more;
-							$more = 0;
-							?>
+										$more = 0;?>
     					<h3>Over <?php the_title(); ?></h3>
     					<?php the_post_thumbnail(array(75,75,true) ); ?>
-    					<?php the_content('(Lees verder)'); ?>
+    					<p><?php the_field('profiel'); ?></p>
+    					<a href="<?php the_permalink();?>">Lees verder</a>
   					<?php endwhile; ?>
   
   					<?php wp_reset_postdata(); ?>

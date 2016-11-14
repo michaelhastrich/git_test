@@ -52,3 +52,4 @@
 			<!-- /header -->
 		</div>	
 		<!-- /wrapper -->
+		<div class="main-content">

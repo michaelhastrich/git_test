@@ -36,4 +36,16 @@ $(window).load(function() {
      rowDivs[currentDiv].height(currentTallest);
    }
  });
+
+ $("#owl-example").owlCarousel({
+  //Autoplay
+    autoPlay : 7000,
+    paginationSpeed : 400,
+    rewindSpeed : 300,
+    stopOnHover : true,
+    singleItem : true,
+    navigation : false,
+    pagination : false
+ });
+
 });

@@ -54,7 +54,7 @@ get_header(); ?>
 	<section class="home-blogrole group">
 		<h1 class="blogheader">Laatste blog artikelen</h1>
 		<?php
-		$posts = get_posts(array('posts_per_page' => 7));
+		$posts = get_posts(array('posts_per_page' => 5));
 		$i=0;
 		foreach ($posts as $post):
 			setup_postdata($post);
@@ -79,12 +79,20 @@ get_header(); ?>
 			<div class="about group">
 				<div class="testimonial">
 					<h3>Testimonials</h3>
-					<?php $the_testimonial = new WP_Query( array( 'post_type' => 'testimonial', 'posts_per_page' => 1, 'orderby' => 'rand') ); ?>
+					<?php $the_testimonial = new WP_Query( array( 'post_type' => 'testimonial', 'posts_per_page' => 3, 'orderby' => 'rand') ); ?>
+					<div id="owl-example" class="owl-carousel">
+							
 					<?php if ( $the_testimonial->have_posts() ): ?>
 					<?php while ( $the_testimonial->have_posts() ) : $the_testimonial->the_post(); ?>
-						<?php the_content(); ?>
-						<span class="client"> <?php the_title(); ?> </span>
+						<div class="testimonial-item">
+							<p class="testimonial-txt"><?php the_field('short_test'); ?></p>	
+							<span class="client"> <?php the_title(); ?></span>
+							<a href="<?php echo get_permalink();?>">Lees de hele testimonial</a>
+							<a class="overview-link" href="<?php echo site_url();?>/testimonials">Bekijk alle testimonials</a>
+						</div>		
 					<?php endwhile; ?>
+					
+					</div>
 					<?php wp_reset_postdata(); ?>
 					<?php else:  ?>
 					<p><?php _e( 'Er zijn momenteel testimonials.' ); ?></p>
@@ -100,7 +108,6 @@ get_header(); ?>
 							?>
     					<h3>Over <?php the_title(); ?></h3>
     					<?php the_post_thumbnail(array(75,75,true) ); ?>
-    					<!--<?php the_content('(Lees verder)'); ?>-->
     					<p><?php the_field('profiel'); ?></p>
     					<a href="<?php the_permalink();?>">Lees verder</a>
   					<?php endwhile; ?>
@@ -114,7 +121,15 @@ get_header(); ?>
 			</div><!-- /about -->
 
 			<div class="challenges group">
-				<?php $the_query = new WP_Query( array( 'post_type' => 'uitdaging', 'posts_per_page' => 4, 'orderby' => 'date', 'order' => 'DSC' ) ); ?>
+				<?php 
+				$args = array( 
+					'post_type' => 'uitdaging', 
+					'posts_per_page' => 4, 
+					'orderby' => 'date', 
+					'order' => 'DSC',
+					'offset' => 2
+					);
+				$the_query = new WP_Query($args); ?>
 				<?php if ( $the_query->have_posts() ): ?>
 				<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 				<div class="challenge">
@@ -131,7 +146,7 @@ get_header(); ?>
 				<?php endwhile; ?>
 				<?php wp_reset_postdata(); ?>
 				<?php else:  ?>
-				<p><?php _e( 'Er zijn momenteel geen Uitdagingen.' ); ?></p>
+				<p><?php _e( 'Hier vind je binnenkort nog meer MyMountain-uitdagingen.' ); ?></p>
 				<?php endif; ?>
 			</div>
 		</div>

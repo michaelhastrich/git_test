@@ -81,6 +81,9 @@ function theme_header_scripts()
         
         wp_register_script('themescripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0'); // Custom scripts
         wp_enqueue_script('themescripts'); // Enqueue it!
+
+        wp_register_script('owlcarousel', get_template_directory_uri() . '/js/owl.carousel.js', array(), '1.0.0'); // Carousel scripts
+        wp_enqueue_script('owlcarousel'); // Enqueue it!
     }
 }
 
@@ -93,6 +96,9 @@ function theme_styles()
     
     wp_register_style('theme', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('theme'); // Enqueue it!
+
+    wp_register_style('owlcarousel', get_template_directory_uri() . '/css/owl.carousel.css', array(), '1.0', 'all');
+    wp_enqueue_style('owlcarousel'); // Enqueue it!
 }
 
 // Register HTML5 Blank Navigation
